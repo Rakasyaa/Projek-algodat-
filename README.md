@@ -1,6 +1,6 @@
 # Projek-algodat-kelompok-16
 
-Ini adalah repositori untuk proyek algoritma dan struktur datakelompok 16 || 
+Ini adalah repositori untuk proyek algoritma dan struktur datakelompok 16 || My-List : List-prioritas dengan tree
 
 ## Clone Repositori
 
