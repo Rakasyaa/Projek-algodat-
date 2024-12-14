@@ -1,7 +1,7 @@
 package src;
 import java.util.Scanner;
 
-public class MusicAppCLI {
+public class My_list {
     private static final Scanner scanner = new Scanner(System.in);
     private static final SongLinkedList songList = new SongLinkedList();
     private static final FavoriteTree favoriteTree = new FavoriteTree();
