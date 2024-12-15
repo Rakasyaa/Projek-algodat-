@@ -5,6 +5,8 @@ public class My_list {
     private static final Scanner scanner = new Scanner(System.in);
     private static final SongLinkedList songList = new SongLinkedList();
     private static final FavoriteTree favoriteTree = new FavoriteTree();
+    private static final SongHistory songHistory = new SongHistory();
+    private static final PlayQueue playQueue = new PlayQueue();
 
     public static void main(String[] args) {
         initializeStaticSongs();
@@ -18,7 +20,12 @@ public class My_list {
             System.out.println("4. Add to Favorites");
             System.out.println("5. View Favorite Songs");
             System.out.println("6. Exit");
-            System.out.print("Choose an option: ");
+            System.out.println("7. Sort Songs");
+            System.out.println("8. View Play History");
+            System.out.println("9. Search Song");
+            System.out.println("10. Add Song to Queue");
+            System.out.println("11. Play Next Song in Queue");
+            System.out.print("Choose an option from the above: ");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -30,6 +37,11 @@ public class My_list {
                 case 4: addFavorite(); break;
                 case 5: viewFavorites(); break;
                 case 6: System.exit(0); break;
+                case 7: sortSongs(); break;
+                case 8: viewHistory(); break;
+                case 9: searchSong(); break;
+                case 10: addSongToQueue(); break;
+                case 11: playNextSongInQueue(); break;
                 default: System.out.println("Invalid choice. Try again.");
             }
         }
@@ -68,6 +80,7 @@ public class My_list {
         SongNode song = songList.findSong(title);
         if (song != null) {
             System.out.println("Playing: " + song);
+            songHistory.addToHistory(song);
         } else {
             System.out.println("Song not found.");
         }
@@ -87,5 +100,47 @@ public class My_list {
 
     private static void viewFavorites() {
         favoriteTree.displayFavorites();
+    }
+
+    private static void sortSongs() {
+        songList.sortSongs();
+        System.out.println("Songs have been sorted alphabetically by title.");
+    }
+
+    private static void viewHistory() {
+        songHistory.viewHistory();
+    }
+
+    private static void searchSong() {
+        System.out.print("Enter the title of the song to search: ");
+        String title = scanner.nextLine();
+        SongNode song = songList.findSong(title);
+        if (song != null) {
+            System.out.println("Song found: " + song);
+        } else {
+            System.out.println("Song not found.");
+        }
+    }
+
+    private static void addSongToQueue() {
+        System.out.print("Enter the title of the song to add to queue: ");
+        String title = scanner.nextLine();
+        SongNode song = songList.findSong(title);
+        if (song != null) {
+            playQueue.enqueue(song);
+            System.out.println("Song added to queue.");
+        } else {
+            System.out.println("Song not found.");
+        }
+    }
+
+    private static void playNextSongInQueue() {
+        SongNode nextSong = playQueue.dequeue();
+        if (nextSong != null) {
+            System.out.println("Playing next song in queue: " + nextSong);
+            songHistory.addToHistory(nextSong);
+        } else {
+            System.out.println("No songs in the queue.");
+        }
     }
 }
