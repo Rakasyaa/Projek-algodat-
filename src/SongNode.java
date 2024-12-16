@@ -16,7 +16,7 @@ public class SongNode {
         this.next = null;
     }
 
-    @Override
+    //@Override
     public String toString() {
         return String.format("%s by %s (%d) [%02d:%02d]", title, author, releaseYear, minutes, seconds);
     }
