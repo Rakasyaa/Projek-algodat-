@@ -8,7 +8,7 @@ public class My_list {
     private static final SongHistory songHistory = new SongHistory();
     private static final PlayQueue playQueue = new PlayQueue();
 
-    public static void main(String[] args) {
+    public  void main() {
         initializeStaticSongs();
         
         while (true) {
