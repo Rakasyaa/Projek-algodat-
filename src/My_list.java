@@ -6,7 +6,7 @@ public class My_list {
     private static final SongLinkedList songList = new SongLinkedList();
     private static final FavoriteTree favoriteTree = new FavoriteTree();
     private static final SongHistory songHistory = new SongHistory();
-    private static final PlayQueue playQueue = new PlayQueue();
+    private static final PlaySongQueue playSongQueue = new PlaySongQueue();
 
     public static void main(String[] args) {
         initializeStaticSongs();
@@ -127,7 +127,7 @@ public class My_list {
         String title = scanner.nextLine();
         SongNode song = songList.findSong(title);
         if (song != null) {
-            playQueue.enqueue(song);
+            playSongQueue.enqueue(song);
             System.out.println("Song added to queue.");
         } else {
             System.out.println("Song not found.");
@@ -135,7 +135,7 @@ public class My_list {
     }
 
     private static void playNextSongInQueue() {
-        SongNode nextSong = playQueue.dequeue();
+        SongNode nextSong = playSongQueue.dequeue();
         if (nextSong != null) {
             System.out.println("Playing next song in queue: " + nextSong);
             songHistory.addToHistory(nextSong);

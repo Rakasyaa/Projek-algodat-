@@ -1,6 +1,6 @@
 package src;
 
-public class PlayQueue {
+public class PlaySongQueue {
     private Node front, rear;
 
     private static class Node {
