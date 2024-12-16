@@ -25,6 +25,9 @@ public class My_list {
             System.out.println("9. Search Song");
             System.out.println("10. Add Song to Queue");
             System.out.println("11. Play Next Song in Queue");
+            System.out.println("12. Add Video");
+            System.out.println("13. Remove Video");
+            System.out.println("14. View Video List"); //video
             System.out.print("Choose an option from the above: ");
 
             int choice = scanner.nextInt();
