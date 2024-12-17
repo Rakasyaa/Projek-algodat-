@@ -7,6 +7,7 @@ public class My_list {
     private static final FavoriteTree favoriteTree = new FavoriteTree();
     private static final SongHistory songHistory = new SongHistory();
     private static final PlaySongQueue playSongQueue = new PlaySongQueue();
+    private static final VideoLinkedList videoList = new VideoLinkedList();
 
     public  void main() {
         initializeStaticSongs();
@@ -45,6 +46,9 @@ public class My_list {
                 case 9: searchSong(); break;
                 case 10: addSongToQueue(); break;
                 case 11: playNextSongInQueue(); break;
+                case 12: addVideo(); break;
+                case 13: removeVideo(); break;
+                case 14: viewVideos(); break;
                 default: System.out.println("Invalid choice. Try again.");
             }
         }
@@ -145,5 +149,30 @@ public class My_list {
         } else {
             System.out.println("No songs in the queue.");
         }
+    }
+
+    private static void addVideo() {
+        System.out.print("Enter video title: ");
+        String title = scanner.nextLine();
+        System.out.print("Enter director: ");
+        String director = scanner.nextLine();
+        System.out.print("Enter release year: ");
+        int year = scanner.nextInt();
+        System.out.print("Enter duration (minutes): ");
+        int minutes = scanner.nextInt();
+        System.out.print("Enter duration (seconds): ");
+        int seconds = scanner.nextInt();
+        scanner.nextLine();
+        videoList.addVideo(title, director, year, minutes, seconds);
+    }
+
+    private static void removeVideo() {
+        System.out.print("Enter video title to remove: ");
+        String title = scanner.nextLine();
+        videoList.removeVideo(title);
+    }
+
+    private static void viewVideos() {
+        videoList.displayVideos();
     }
 }
