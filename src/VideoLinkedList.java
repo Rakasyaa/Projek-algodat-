@@ -1,10 +1,10 @@
 package src;
 
 public class VideoLinkedList {
-    VideoNode head;
+    private VideoNode head;
 
-    public void addVideo(String title, String director, int releaseYear, int durationMinutes, int durationSeconds, String type) {
-        VideoNode newVideo = new VideoNode(title, director, releaseYear, durationMinutes, durationSeconds, type);
+    public void addVideo(String title, String director, int releaseYear, int durationMinutes, int durationSeconds) {
+        VideoNode newVideo = new VideoNode(title, director, releaseYear, durationMinutes, durationSeconds);
         if (head == null) {
             head = newVideo;
         } else {
@@ -17,32 +17,24 @@ public class VideoLinkedList {
     }
 
     public void removeVideo(String title) {
-        if (head == null) {
-            System.out.println("The video list is empty. No video to remove.");
-            return;
-        }
-    
-        if (head.title.equalsIgnoreCase(title)) {
-            head = head.next; 
-            System.out.println("Video \"" + title + "\" removed successfully.");
-            return;
-        }
-    
-        VideoNode current = head;
-        while (current.next != null && !current.next.title.equalsIgnoreCase(title)) {
-            current = current.next;
-        }
-    
+        if (head == null) return;
 
-        if (current.next != null) {
-            current.next = current.next.next; 
-            System.out.println("Video \"" + title + "\" removed successfully.");
-        } else {
-            System.out.println("Video \"" + title + "\" not found in the list.");
+        if (head.title.equalsIgnoreCase(title)) {
+            head = head.next;
+            return;
+        }
+
+        VideoNode current = head;
+        while (current.next != null) {
+            if (current.next.title.equalsIgnoreCase(title)) {
+                current.next = current.next.next;
+                return;
+            }
+            current = current.next;
         }
     }
 
-    public void displayAllVideos() {
+    public void displayVideos() {
         if (head == null) {
             System.out.println("No videos in the list.");
             return;
@@ -56,19 +48,12 @@ public class VideoLinkedList {
         }
     }
 
-    public void displayVideosByType(String type) {
-        if (head == null) {
-            System.out.println("No videos in the list.");
-            return;
-        }
-
+    public VideoNode findVideo(String title) {
         VideoNode current = head;
-        System.out.println("--- " + type + " List ---");
         while (current != null) {
-            if (current.type.equalsIgnoreCase(type)) {
-                System.out.println(current);
-            }
+            if (current.title.equalsIgnoreCase(title)) return current;
             current = current.next;
         }
+        return null;
     }
 }
