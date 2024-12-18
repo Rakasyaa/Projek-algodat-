@@ -1,4 +1,5 @@
 package src;
+
 public class SongLinkedList {
     private SongNode head;
 
@@ -34,23 +35,39 @@ public class SongLinkedList {
     }
 
     public void displaySongs() {
+
+        System.out.println("================================");
+        System.out.println("            List Lagu       ");
+        System.out.println("================================");
+
         if (head == null) {
-            System.out.println("No songs in the list.");
+            System.out.println("list masih kosong . . . ");
+            System.out.println();
+            System.out.println("Anda dapat menambahkan lagu terlebih dahulu");
             return;
         }
         
         SongNode current = head;
-        System.out.println("--- Song List ---");
+        int Nomer_lagu = 1;
+
         while (current != null) {
-            System.out.println(current);
+
+            System.out.println("  " + Nomer_lagu + " | " + current.author + " - " + current.title + " (" + current.releaseYear + ")");
+            System.out.println("        " + current.minutes +":"+ current.seconds );
+            Nomer_lagu++;
             current = current.next;
         }
     }
 
     public SongNode findSong(String title) {
+        System.out.println("SEBELUM CARI");
+        System.out.println(title);
         SongNode current = head;
         while (current != null) {
-            if (current.title.equalsIgnoreCase(title)) return current;
+            if (current.title.equalsIgnoreCase(title)){
+                return current;
+                
+            } 
             current = current.next;
         }
         return null;
@@ -90,4 +107,5 @@ public class SongLinkedList {
             }
         } while (swapped);
     }
+
 }
