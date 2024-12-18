@@ -3,37 +3,82 @@ import java.util.Scanner;
 
 public class My_list {
     private static final Scanner scanner = new Scanner(System.in);
+
     private static final SongLinkedList songList = new SongLinkedList();
-    private static final FavoriteTree favoriteTree = new FavoriteTree();
-    private static final SongHistory songHistory = new SongHistory();
-    private static final PlaySongQueue playSongQueue = new PlaySongQueue();
+    private static final PlayList Playlist = new PlayList();
+
     private static final VideoLinkedList videoList = new VideoLinkedList();
 
-    public  void main() {
-        initializeStaticSongs();
-        
-        while (true) {
+    boolean Add_Awal = true;
+
+    private static void Add_Awal() {
+        songList.addSong("Song A", "Author A", 2020, 3, 45);
+        songList.addSong("Song B", "Author B", 2019, 4, 20);
+        songList.addSong("Song C", "Author C", 2021, 2, 58);
+
+
+    }
+
+    public void menu_musik(){
+        if (Add_Awal){
+            Add_Awal();
+            Add_Awal = false;
+        }
+
+        int choice;
+        do {
+            System.out.println("====================================");
+            System.out.println("                 My-List           ");
+            System.out.println("              Menu List Lagu       ");
+            System.out.println("====================================");
+            
+            Playlist.Musikplay();
+
+            System.out.println("1. Play Song");
+            System.out.println("2. Skip Song");
+            System.out.println("3. Add to Favorites");
+            System.out.println("4. View Favorite Songs");
+            System.out.println("5. View List");
+            System.out.println("6. Lihat PlayList");
+            System.out.println("7. Exit");
+
+            System.out.print("\nPilih menu >> ");
+
+            choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1: playSong(); break;
+                case 2: Playlist.popTop(); break;
+                case 3: addFavorite(); break;
+                case 4: Playlist.displayFavorites(); break;
+                case 5: menu_list(); break;
+                case 6: Playlist.viewHistory();
+                case 7: break;
+
+                default: System.out.println("Invalid choice. Try again.");
+            }
+        } while (choice != 7);
+    };
+
+    private void menu_list (){
+    
+        int choice;
+
+        do {
             songList.displaySongs();
-            System.out.println("\nMenu:");
+
             System.out.println("1. Add Song");
             System.out.println("2. Remove Song");
-            System.out.println("3. Play Song");
-            System.out.println("4. Add to Favorites");
-            System.out.println("5. View Favorite Songs");
-            System.out.println("6. Exit");
-            System.out.println("7. Sort Songs");
-            System.out.println("8. View Play History");
-            System.out.println("9. Search Song");
-            System.out.println("10. Add Song to Queue");
-            System.out.println("11. Play Next Song in Queue");
-            System.out.println("12. Add Video");
-            System.out.println("13. Remove Video");
-            System.out.println("14. View Video List"); //video
-            System.out.print("Choose an option from the above: ");
+            System.out.println("3. Sort Songs");
+            System.out.println("4. Add To PlayList");
+            System.out.println("5. kembali");
 
-            int choice = scanner.nextInt();
+            System.out.print("\nPilih menu >> ");
+
+            choice = scanner.nextInt();
             scanner.nextLine();
-            
+
             switch (choice) {
                 case 1: addSong(); break;
                 case 2: removeSong(); break;
@@ -51,16 +96,25 @@ public class My_list {
                 case 14: displayVideosByType(); break;
                 default: System.out.println("Invalid choice. Try again.");
             }
+        } while (choice != 5);
+    }
+
+    private void Add_To_PlayList (){
+        System.out.print("Enter the title of the song to Add: ");
+
+        String title = scanner.nextLine();
+        SongNode song = songList.findSong(title);
+        
+        if (song != null) {
+            System.out.println("Add : " + song.title);
+            Playlist.enqueue(song);
+        } else {
+            System.out.println("Song not found.");
         }
     }
 
-    private static void initializeStaticSongs() {
-        songList.addSong("Song A", "Author A", 2020, 3, 45);
-        songList.addSong("Song B", "Author B", 2019, 4, 20);
-        songList.addSong("Song C", "Author C", 2021, 2, 58);
-    }
-
     private static void addSong() {
+        System.out.println();
         System.out.print("Enter title: ");
         String title = scanner.nextLine();
         System.out.print("Enter author: ");
@@ -76,21 +130,10 @@ public class My_list {
     }
 
     private static void removeSong() {
+        System.out.println();
         System.out.print("Enter the title of the song to remove: ");
         String title = scanner.nextLine();
         songList.removeSong(title);
-    }
-
-    private static void playSong() {
-        System.out.print("Enter the title of the song to play: ");
-        String title = scanner.nextLine();
-        SongNode song = songList.findSong(title);
-        if (song != null) {
-            System.out.println("Playing: " + song);
-            songHistory.addToHistory(song);
-        } else {
-            System.out.println("Song not found.");
-        }
     }
 
     private static void addFavorite() {
@@ -98,58 +141,50 @@ public class My_list {
         String title = scanner.nextLine();
         SongNode song = songList.findSong(title);
         if (song != null) {
-            favoriteTree.addFavorite(song);
+            Playlist.addFavorite(song);
             System.out.println("Added to favorites.");
         } else {
             System.out.println("Song not found.");
         }
     }
 
-    private static void viewFavorites() {
-        favoriteTree.displayFavorites();
-    }
+    private static void playSong() {
+        System.out.print("Enter the title of the song to play: ");
 
-    private static void sortSongs() {
-        songList.sortSongs();
-        System.out.println("Songs have been sorted alphabetically by title.");
-    }
-
-    private static void viewHistory() {
-        songHistory.viewHistory();
-    }
-
-    private static void searchSong() {
-        System.out.print("Enter the title of the song to search: ");
         String title = scanner.nextLine();
         SongNode song = songList.findSong(title);
+        
         if (song != null) {
-            System.out.println("Song found: " + song);
+            System.out.println("Playing: " + song.title);
+            Playlist.addTop(song);
         } else {
             System.out.println("Song not found.");
         }
     }
 
-    private static void addSongToQueue() {
-        System.out.print("Enter the title of the song to add to queue: ");
-        String title = scanner.nextLine();
-        SongNode song = songList.findSong(title);
-        if (song != null) {
-            playSongQueue.enqueue(song);
-            System.out.println("Song added to queue.");
-        } else {
-            System.out.println("Song not found.");
-        }
-    }
+    public void menu_video(){
 
-    private static void playNextSongInQueue() {
-        SongNode nextSong = playSongQueue.dequeue();
-        if (nextSong != null) {
-            System.out.println("Playing next song in queue: " + nextSong);
-            songHistory.addToHistory(nextSong);
-        } else {
-            System.out.println("No songs in the queue.");
+        System.out.println("================================");
+        System.out.println("              My-List           ");
+        System.out.println("          Menu List Filem       ");
+        System.out.println("================================");
+
+        System.out.println("1. Add Video");
+        System.out.println("2. Remove Video");
+        System.out.println("3. View Video List");
+
+        System.out.print("\nPilih menu >> ");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (choice) {
+            case 1: addVideo(); break;
+            case 2: removeVideo(); break;
+            case 3: viewVideos(); break;
+            default: System.out.println("Invalid choice. Try again.");
         }
-    }
+    };
 
     private static void addVideo() {
         System.out.print("Enter title: ");
