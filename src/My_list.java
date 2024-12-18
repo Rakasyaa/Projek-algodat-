@@ -82,9 +82,18 @@ public class My_list {
             switch (choice) {
                 case 1: addSong(); break;
                 case 2: removeSong(); break;
-                case 3: songList.sortSongs();
-                case 4: Add_To_PlayList();;
-
+                case 3: playSong(); break;
+                case 4: addFavorite(); break;
+                case 5: viewFavorites(); break;
+                case 6: System.exit(0); break;
+                case 7: sortSongs(); break;
+                case 8: viewHistory(); break;
+                case 9: searchSong(); break;
+                case 10: addSongToQueue(); break;
+                case 11: playNextSongInQueue(); break;
+                case 12: addVideo(); break;
+                case 13: removeVideo(); break;
+                case 14: displayVideosByType(); break;
                 default: System.out.println("Invalid choice. Try again.");
             }
         } while (choice != 5);
@@ -178,24 +187,37 @@ public class My_list {
     };
 
     private static void addVideo() {
-        System.out.print("Enter video title: ");
+        System.out.print("Enter title: ");
         String title = scanner.nextLine();
         System.out.print("Enter director: ");
         String director = scanner.nextLine();
         System.out.print("Enter release year: ");
-        int year = scanner.nextInt();
+        int releaseYear = scanner.nextInt();
         System.out.print("Enter duration (minutes): ");
-        int minutes = scanner.nextInt();
+        int durationMinutes = scanner.nextInt();
         System.out.print("Enter duration (seconds): ");
-        int seconds = scanner.nextInt();
-        System.out.print("Enter type : ");
+        int durationSeconds = scanner.nextInt();
+        scanner.nextLine(); 
+        System.out.print("Enter type (Film/Podcast): ");
         String type = scanner.nextLine();
-        scanner.nextLine();
-        videoList.addVideo(title, director, year, minutes, seconds, type);
+
+        if (!type.equalsIgnoreCase("Film") && !type.equalsIgnoreCase("Podcast")) {
+            System.out.println("Invalid type entered. Defaulting to 'Film'.");
+            type = "Film";
+        }
+
+        videoList.addVideo(title, director, releaseYear, durationMinutes, durationSeconds, type);
+        System.out.println("Video added successfully.");
+    }
+
+    private static void displayVideosByType() {
+        System.out.print("Enter type to display (Film/Podcast): ");
+        String type = scanner.nextLine();
+        videoList.displayVideosByType(type);
     }
 
     private static void removeVideo() {
-        System.out.print("Enter video title to remove: ");
+        System.out.print("Enter the title of the video to remove: ");
         String title = scanner.nextLine();
         videoList.removeVideo(title);
     }
