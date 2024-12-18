@@ -188,8 +188,10 @@ public class My_list {
         int minutes = scanner.nextInt();
         System.out.print("Enter duration (seconds): ");
         int seconds = scanner.nextInt();
+        System.out.print("Enter type : ");
+        String type = scanner.nextLine();
         scanner.nextLine();
-        videoList.addVideo(title, director, year, minutes, seconds);
+        videoList.addVideo(title, director, year, minutes, seconds, type);
     }
 
     private static void removeVideo() {
@@ -199,7 +201,7 @@ public class My_list {
     }
 
     private static void viewVideos() {
-        videoList.displayVideos();
+        videoList.displayAllVideos();
     }
 
 }
