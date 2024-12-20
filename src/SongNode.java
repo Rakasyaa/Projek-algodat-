@@ -1,4 +1,5 @@
 package src;
+
 public class SongNode {
     String title;
     String author;
@@ -15,5 +16,4 @@ public class SongNode {
         this.seconds = seconds;
         this.next = null;
     }
-
 }

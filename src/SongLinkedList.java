@@ -60,13 +60,11 @@ public class SongLinkedList {
     }
 
     public SongNode findSong(String title) {
-        System.out.println("SEBELUM CARI");
         System.out.println(title);
         SongNode current = head;
         while (current != null) {
             if (current.title.equalsIgnoreCase(title)){
                 return current;
-                
             } 
             current = current.next;
         }
