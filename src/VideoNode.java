@@ -17,8 +17,4 @@ public class VideoNode {
         this.next = null;
     }
 
-    @Override
-    public String toString() {
-        return String.format("%s by %s (%d) [%02d:%02d]", title, director, releaseYear, durationMinutes, durationSeconds);
-    }
 }
