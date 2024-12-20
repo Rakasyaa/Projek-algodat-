@@ -16,11 +16,11 @@ public class My_list {
         songList.addSong("Song B", "Author B", 2019, 4, 20);
         songList.addSong("Song C", "Author C", 2021, 2, 58);
 
-        Tree.addVideo("Inception", "Christopher Nolan", "Sci-Fi", 2010, 148, 20);
-        Tree.addVideo("The Matrix", "Wachowski Sisters", "Sci-Fi", 1999, 136, 0);
-        Tree.addVideo("Interstellar", "Christopher Nolan", "Sci-Fi", 2014, 169, 0);
-        Tree.addVideo("The Godfather", "Francis Ford Coppola", "Crime", 1972, 175, 0);
-        Tree.addVideo("Pulp Fiction", "Quentin Tarantino", "Crime", 1994, 154, 0);
+        Tree.addVideo("Inception", "Christopher Nolan", "Sci-Fi", 2010, 14, 20);
+        Tree.addVideo("The Matrix", "Wachowski Sisters", "Sci-Fi", 1999, 13, 0);
+        Tree.addVideo("Interstellar", "Christopher Nolan", "Sci-Fi", 2014, 16, 0);
+        Tree.addVideo("The Godfather", "Francis Ford Coppola", "Crime", 1972, 17, 0);
+        Tree.addVideo("Pulp Fiction", "Quentin Tarantino", "Crime", 1994, 15, 0);
     }
 
     public static void main(String[] args) {
@@ -233,23 +233,32 @@ public class My_list {
                     System.out.print("Masukkan judul film: ");
                     title = scanner.nextLine();
                     Tree.watchVideo(title);
+                    pause();
                     LoadingAnimation();
                     break;
-                case 2 : Tree.displayAllVideos();
-                case 3 : tambah_lagu(); break;
-                case 4 : hapus_Sequel(); break;
+                case 2 : 
+                    Tree.displayAllVideos(); 
+                    pause();
+                    break;
+                case 3 : 
+                    tambah_film(); 
+                    break;
+                case 4 : 
+                    hapus_Sequel(); 
+                    break;
                 case 5 : 
                     System.out.print("Masukkan judul film yang ingin dihapus: ");
                     title = scanner.nextLine();
                     Tree.deleteVideo(title);
                     LoadingAnimation();
                     break;
-                case 6 : return;
+                case 6 : 
+                    return;
             }
         }
     }
 
-    public static void tambah_lagu() {
+    public static void tambah_film() {
         System.out.print("Masukkan judul: ");
         String title = scanner.nextLine();
         System.out.print("Masukkan sutradara: ");

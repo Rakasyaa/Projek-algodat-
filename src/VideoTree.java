@@ -95,8 +95,9 @@ class VideoTree {
 
         if (node == null) {
             System.out.println("Film tidak ditemukan.");
+
         } else {
-            System.out.println("Menonton: " + node.title);
+            VideoPlay(node);
             if (node.left != null) {
                 System.out.println("Film terkait (kiri): " + node.left.title);
             } else {
@@ -111,7 +112,7 @@ class VideoTree {
     }
 
     public void layar (){
-        System.out.println("+--------------------------------------------------+");
+        System.out.println("0--------------------------------------------------0");
         System.out.println("|                                                  |");
         System.out.println("|                                                  |");
         System.out.println("|                                                  |");
@@ -123,7 +124,7 @@ class VideoTree {
         System.out.println("|                                                  |");
         System.out.println("|                                                  |");
         System.out.println("|                                                  |");
-        System.out.println("+--------------------------------------------------+");
+        System.out.println("0--------------------------------------------------0");
     }
 
     public void VideoPlay( VideoNode node) {
@@ -175,7 +176,7 @@ class VideoTree {
                 // Menampilkan progress bar
                 System.out.print("\r" + progressBar); // \r untuk menimpa baris sebelumnya
                 try {
-                    Thread.sleep(1000); // Delay 1 detik
+                    Thread.sleep(1); // Delay 1 detik
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -183,9 +184,9 @@ class VideoTree {
                 currentSeconds++;
             }
     
-            System.out.println("\n🎉 Video selesai diputar! 🎉");
+            System.out.println("\n Video selesai diputar! ");
         } else {
-            System.out.println("🚫 Tidak ada video di dalam daftar putar! 🚫");
+            System.out.println("Tidak ada video di dalam daftar putar!");
         }
     }
     

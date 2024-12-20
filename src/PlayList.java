@@ -43,42 +43,8 @@ public class PlayList {
             System.out.println("             Now Playing         ");
             System.out.println(" |> " + top.song.title + " - " + top.song.author);
             System.out.println();
-
-            // Simulasi waktu berjalan
-            int totalSeconds = top.song.minutes * 60 + top.song.seconds; // Menghitung total durasi dalam detik
-            int progressBarLength = 30; // Panjang progress bar
-            int currentSeconds = 0; // Waktu saat ini
-            
-            int filledLength = (int) ((double) currentSeconds / totalSeconds * progressBarLength);
-            
-            // Progress bar bergerak
-            String progressBar = "0:00 ";
-            progressBar += "|"; 
-            
-            for (int i = 0; i < filledLength; i++) {
-                progressBar += "="; // Bagian progress yang terisi
-            }
-            
-            progressBar += ">";
-            
-            for (int i = filledLength; i < progressBarLength; i++) {
-                progressBar += "-"; // Bagian progress yang belum terisi
-            }
-            
-            progressBar += "| ";
-            
-            // Menghitung menit dan detik saat ini
-            int currentMinutes = currentSeconds / 60;
-            int currentRemainingSeconds = currentSeconds % 60;
-            String timeNow = String.format("%02d:%02d", currentMinutes, currentRemainingSeconds);
-                
-            // Menampilkan waktu saat ini dan total durasi
-            progressBar += timeNow + " / " + String.format("%02d:%02d", top.song.minutes, top.song.seconds);
-                
-                // Menampilkan progress bar
-                System.out.print("\r" + progressBar); // \r untuk menimpa baris sebelumnya
-
-                currentSeconds++;
+        
+            System.out.println("0:00 |=>--------------------------------|");
             
                 System.out.println("\n    ====================================");
                 System.out.println();
