@@ -130,11 +130,11 @@ class VideoTree {
     public void VideoPlay( VideoNode node) {
         if (node != null) {
             System.out.println("====================================");
-            System.out.println("           🎥 Now Playing 🎥        ");
+            System.out.println("               Now Playing          ");
             System.out.println("====================================");
-            System.out.println("🎞️ " + node.title + " - " + node.director);
-            System.out.println("📅 Release Year: " + node.releaseYear);
-            System.out.println("🎭 Genre: " + node.type);
+            System.out.println("=> " + node.title + " - " + node.director);
+            System.out.println("=> Release Year: " + node.releaseYear);
+            System.out.println("=> Genre: " + node.type);
             System.out.println("====================================");
     
             //menampilkan layar

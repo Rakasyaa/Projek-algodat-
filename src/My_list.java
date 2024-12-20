@@ -1,4 +1,5 @@
 package src;
+
 import java.util.Scanner;
 
 public class My_list {
@@ -63,10 +64,6 @@ public class My_list {
     }
 
     public static void menu_musik(){
-        // if (Add_Awal){
-        //     Add_Awal();
-        //     Add_Awal = false;
-        // }
 
         int choice;
         do {
