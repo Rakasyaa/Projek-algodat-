@@ -182,6 +182,8 @@ public class My_list {
         String title = scanner.nextLine();
         System.out.print("Enter director: ");
         String director = scanner.nextLine();
+        System.out.print("Enter type: ");
+        String type = scanner.nextLine();
         System.out.print("Enter release year: ");
         int year = scanner.nextInt();
         System.out.print("Enter duration (minutes): ");
@@ -189,7 +191,7 @@ public class My_list {
         System.out.print("Enter duration (seconds): ");
         int seconds = scanner.nextInt();
         scanner.nextLine();
-        videoList.addVideo(title, director, year, minutes, seconds);
+        videoList.addVideo(title, director,type , year, minutes, seconds);
     }
 
     private static void removeVideo() {
@@ -199,7 +201,7 @@ public class My_list {
     }
 
     private static void viewVideos() {
-        videoList.displayVideos();
+        videoList.displayAllVideos();
     }
 
 }
