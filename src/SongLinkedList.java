@@ -71,34 +71,70 @@ public class SongLinkedList {
         return null;
     }
 
-    public void sortSongs() {
+    public void sortByAlphabet() {
         if (head == null || head.next == null) return;
-    
+
         boolean swapped;
         do {
             swapped = false;
             SongNode current = head;
-            while (current.next != null) {
+            while (current != null && current.next != null) {
                 if (current.title.compareToIgnoreCase(current.next.title) > 0) {
-                    // Swap the data
                     String tempTitle = current.title;
                     String tempAuthor = current.author;
-                    int tempYear = current.releaseYear;
+                    int tempReleaseYear = current.releaseYear;
                     int tempMinutes = current.minutes;
                     int tempSeconds = current.seconds;
-    
+
                     current.title = current.next.title;
                     current.author = current.next.author;
                     current.releaseYear = current.next.releaseYear;
                     current.minutes = current.next.minutes;
                     current.seconds = current.next.seconds;
-    
+
                     current.next.title = tempTitle;
                     current.next.author = tempAuthor;
-                    current.next.releaseYear = tempYear;
+                    current.next.releaseYear = tempReleaseYear;
                     current.next.minutes = tempMinutes;
                     current.next.seconds = tempSeconds;
-    
+
+                    swapped = true;
+                }
+                current = current.next;
+            }
+        } while (swapped);
+    }
+
+    public void sortByTime() {
+        if (head == null || head.next == null) return;
+
+        boolean swapped;
+        do {
+            swapped = false;
+            SongNode current = head;
+            while (current != null && current.next != null) {
+                int currentTimeInSeconds = current.minutes * 60 + current.seconds;
+                int nextTimeInSeconds = current.next.minutes * 60 + current.next.seconds;
+
+                if (currentTimeInSeconds > nextTimeInSeconds) {
+                    String tempTitle = current.title;
+                    String tempAuthor = current.author;
+                    int tempReleaseYear = current.releaseYear;
+                    int tempMinutes = current.minutes;
+                    int tempSeconds = current.seconds;
+
+                    current.title = current.next.title;
+                    current.author = current.next.author;
+                    current.releaseYear = current.next.releaseYear;
+                    current.minutes = current.next.minutes;
+                    current.seconds = current.next.seconds;
+
+                    current.next.title = tempTitle;
+                    current.next.author = tempAuthor;
+                    current.next.releaseYear = tempReleaseYear;
+                    current.next.minutes = tempMinutes;
+                    current.next.seconds = tempSeconds;
+
                     swapped = true;
                 }
                 current = current.next;
