@@ -121,9 +121,10 @@ public class My_list {
 
             System.out.println("1. Add Song");
             System.out.println("2. Remove Song");
-            System.out.println("3. Sort Songs");
-            System.out.println("4. Add To PlayList");
-            System.out.println("5. kembali");
+            System.out.println("3. Sort Songs by Alphabet");
+            System.out.println("4. Sort Songs by Time");
+            System.out.println("5. Add To PlayList");
+            System.out.println("6. kembali");
 
             System.out.print("\nPilih menu >> ");
 
@@ -133,12 +134,13 @@ public class My_list {
             switch (choice) {
                 case 1: addSong(); break;
                 case 2: removeSong(); break;
-                case 3: songList.sortSongs();
-                case 4: Add_To_PlayList();;
+                case 3: songList.sortByAlphabet(); break;
+                case 4: songList.sortByTime(); break;
+                case 5: Add_To_PlayList();;
 
                 default: System.out.println("Invalid choice. Try again.");
             }
-        } while (choice != 5);
+        } while (choice != 6);
     }
 
     private static void Add_To_PlayList (){
