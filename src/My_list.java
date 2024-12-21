@@ -208,7 +208,6 @@ public class My_list {
             System.out.println("5. Remove Movie");
             System.out.println("6. Search Movie");
             System.out.println("7. Exit");
-
             System.out.print("\nInsert option >> ");
 
             int choice = scanner.nextInt();
