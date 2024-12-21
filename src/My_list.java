@@ -78,11 +78,9 @@ public class My_list {
 
             System.out.println("    1. Play Song");
             System.out.println("    2. Skip Song");
-            System.out.println("    3. Add to Favorites");
-            System.out.println("    4. View Favorite Songs");
-            System.out.println("    5. View List");
-            System.out.println("    6. Lihat History");
-            System.out.println("    7. Exit");
+            System.out.println("    3. View List");
+            System.out.println("    4. Lihat History");
+            System.out.println("    5. Exit");
 
             System.out.print("\nPilih menu >> ");
 
@@ -92,19 +90,13 @@ public class My_list {
             switch (choice) {
                 case 1: playSong(); break;
                 case 2:Playlist.popTop(); break;
-                case 3: addFavorite(); break;
+                case 3: menu_list(); break;
                 case 4: 
-                    clearScreen();
-                    System.out.println("kosong");
-                    pause();
-                    break;
-                case 5: menu_list(); break;
-                case 6: 
                     clearScreen();
                     Playlist.viewHistory();
                     pause();
                     break;
-                case 7: break;
+                case 5: break;
 
                 default: System.out.println("Invalid choice. Try again.");
             }
@@ -183,11 +175,6 @@ public class My_list {
         pause();
     }
 
-    private static void addFavorite() {
-        System.out.println("kosong");
-        pause();
-    }
-
     private static void playSong() {
         clearScreen();
         System.out.print("Enter the title of the song to play: ");
@@ -219,7 +206,8 @@ public class My_list {
             System.out.println("3. Tambah Film");
             System.out.println("4. Tambah Film sequel");
             System.out.println("5. Hapus Film");
-            System.out.println("6. Keluar");
+            System.out.println("6. Cari Film");
+            System.out.println("7. Keluar");
 
             System.out.print("\nPilih menu >> ");
 
@@ -245,13 +233,19 @@ public class My_list {
                 case 4 : 
                     hapus_Sequel(); 
                     break;
-                case 5 : 
+                    case 5 : 
                     System.out.print("Masukkan judul film yang ingin dihapus: ");
                     title = scanner.nextLine();
                     Tree.deleteVideo(title);
                     LoadingAnimation();
                     break;
-                case 6 : 
+                case 6 :
+                    System.out.print("Masukkan judul film yang ingin dicari: ");
+                    title = scanner.nextLine();
+                    Tree.searchAndDisplayVideo(title);
+                    pause();
+                    break;
+                case 7 : 
                     return;
             }
         }
