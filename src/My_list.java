@@ -33,14 +33,14 @@ public class My_list {
             LoadingAnimation();
             clearScreen();
             System.out.println("====================================");
-            System.out.println("                My-List           ");
+            System.out.println("                My-List             ");
             System.out.println("====================================");
             
-            System.out.println("   1. List Lagu");
-            System.out.println("   2. List Video");
-            System.out.println("   3. Keluar");
+            System.out.println("   1. List Song");
+            System.out.println("   2. List Film");
+            System.out.println("   3. Exit");
             
-            System.out.print("\nPilih menu >> ");
+            System.out.print("\nInsert option >> ");
             
             pilihan = scanner.nextInt();
 
@@ -52,7 +52,7 @@ public class My_list {
                     menu_video();
                     break;
                 case 3:
-                    System.out.println("Terima kasih telah menggunakan program ini!");
+                    System.out.println("Thanks for using this program!");
                     break;
                 default :
                     System.out.println("Invalid choice. Try again");
@@ -70,8 +70,8 @@ public class My_list {
             LoadingAnimation();
             clearScreen();
             System.out.println("====================================");
-            System.out.println("                 My-List           ");
-            System.out.println("              Menu List Lagu       ");
+            System.out.println("               My-List              ");
+            System.out.println("            Song Menu List          ");
             System.out.println("====================================");
 
             Playlist.Musikplay();
@@ -79,10 +79,10 @@ public class My_list {
             System.out.println("    1. Play Song");
             System.out.println("    2. Skip Song");
             System.out.println("    3. View List");
-            System.out.println("    4. Lihat History");
+            System.out.println("    4. View History");
             System.out.println("    5. Exit");
 
-            System.out.print("\nPilih menu >> ");
+            System.out.print("\nInsert option >> ");
 
             choice = scanner.nextInt();
             scanner.nextLine();
@@ -116,9 +116,9 @@ public class My_list {
             System.out.println("3. Sort Songs by Alphabet");
             System.out.println("4. Sort Songs by Time");
             System.out.println("5. Add To PlayList");
-            System.out.println("6. kembali");
+            System.out.println("6. Back");
 
-            System.out.print("\nPilih menu >> ");
+            System.out.print("\nInsert option >> ");
 
             choice = scanner.nextInt();
             scanner.nextLine();
@@ -136,7 +136,7 @@ public class My_list {
     }
 
     private static void Add_To_PlayList (){
-        System.out.print("Enter the title of the song to Add: ");
+        System.out.print("Enter the title of the song to add: ");
 
         String title = scanner.nextLine();
         SongNode song = songList.findSong(title);
@@ -198,18 +198,18 @@ public class My_list {
             clearScreen();
             System.out.println("================================");
             System.out.println("              My-List           ");
-            System.out.println("          Menu List Filem       ");
+            System.out.println("          List Movie Menu       ");
             System.out.println("================================");
 
-            System.out.println("\n1. Nonton Film");
-            System.out.println("2. Lihat Daftar Film");
-            System.out.println("3. Tambah Film");
-            System.out.println("4. Tambah Film sequel");
-            System.out.println("5. Hapus Film");
-            System.out.println("6. Cari Film");
-            System.out.println("7. Keluar");
+            System.out.println("\n1. Play Movie");
+            System.out.println("2. Show List Movie");
+            System.out.println("3. Add Movie");
+            System.out.println("4. Add Movie Sequel");
+            System.out.println("5. Remove Movie");
+            System.out.println("6. Search Movie");
+            System.out.println("7. Exit");
 
-            System.out.print("\nPilih menu >> ");
+            System.out.print("\nInsert option >> ");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -217,7 +217,7 @@ public class My_list {
             String title;
             switch (choice) {
                 case 1 :
-                    System.out.print("Masukkan judul film: ");
+                    System.out.print("Enter the movie title: ");
                     title = scanner.nextLine();
                     Tree.watchVideo(title);
                     pause();
@@ -234,13 +234,13 @@ public class My_list {
                     hapus_Sequel(); 
                     break;
                     case 5 : 
-                    System.out.print("Masukkan judul film yang ingin dihapus: ");
+                    System.out.print("Enter the title of the movie to remove: ");
                     title = scanner.nextLine();
                     Tree.deleteVideo(title);
                     LoadingAnimation();
                     break;
                 case 6 :
-                    System.out.print("Masukkan judul film yang ingin dicari: ");
+                    System.out.print("Enter the title of the movie to search: ");
                     title = scanner.nextLine();
                     Tree.searchAndDisplayVideo(title);
                     pause();
@@ -252,17 +252,17 @@ public class My_list {
     }
 
     public static void tambah_film() {
-        System.out.print("Masukkan judul: ");
+        System.out.print("Enter the title: ");
         String title = scanner.nextLine();
-        System.out.print("Masukkan sutradara: ");
+        System.out.print("Enter the director: ");
         String director = scanner.nextLine();
-        System.out.print("Masukkan tipe: ");
+        System.out.print("Enter the type: ");
         String type = scanner.nextLine();
-        System.out.print("Masukkan tahun rilis: ");
+        System.out.print("Enter the release year: ");
         int year = scanner.nextInt();
-        System.out.print("Masukkan durasi menit: ");
+        System.out.print("Enter the duration in minutes: ");
         int minutes = scanner.nextInt();
-        System.out.print("Masukkan durasi detik: ");
+        System.out.print("Enter the duration in seconds: ");
         int seconds = scanner.nextInt();
         scanner.nextLine();
         Tree.addVideo(title, director, type, year, minutes, seconds);
@@ -270,19 +270,19 @@ public class My_list {
     }
 
     public static void hapus_Sequel() {
-        System.out.print("Masukkan judul sebelum : ");
+        System.out.print("Enter the title of the movie to add sequel : ");
         String titleafter = scanner.nextLine();
-        System.out.print("Masukkan judul: ");
+        System.out.print("Enter the title: ");
         String title = scanner.nextLine();
-        System.out.print("Masukkan sutradara: ");
+        System.out.print("Enter the director: ");
         String director = scanner.nextLine();
-        System.out.print("Masukkan tipe: ");
+        System.out.print("Enter the type: ");
         String type = scanner.nextLine();
-        System.out.print("Masukkan tahun rilis: ");
+        System.out.print("Enter the release year: ");
         int year = scanner.nextInt();
-        System.out.print("Masukkan durasi menit: ");
+        System.out.print("Enter the duration in minutes: ");
         int minutes = scanner.nextInt();
-        System.out.print("Masukkan durasi detik: ");
+        System.out.print("Enter the duration in seconds: ");
         int seconds = scanner.nextInt();
         scanner.nextLine();
         Tree.addVideoAfter(titleafter, title, director, type, year, minutes, seconds);
@@ -294,7 +294,7 @@ public class My_list {
         int loadingTime = 1;
         
         clearScreen();
-        System.out.println("Dalam proses loading...");
+        System.out.println("Loading.....");
 
         int putaran = 0;
         while ( putaran < loadingTime) {
@@ -303,13 +303,13 @@ public class My_list {
                 try {
                     Thread.sleep(200);
                 } catch (InterruptedException e) {
-                    System.out.println("\nProses loading terganggu!");
+                    System.out.println("\nLoading Process Interrupted!");
                     return;
                 } 
             }
             putaran++;
         }
-        System.out.println("\rLoading selesai!              ");
+        System.out.println("\rLoading Complete!              ");
     
     }
 
