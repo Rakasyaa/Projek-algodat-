@@ -209,7 +209,7 @@ public class My_list {
             clearScreen();
             System.out.println("================================");
             System.out.println("              My-List           ");
-            System.out.println("          Menu List Filem       ");
+            System.out.println("          Menu List Film       ");
             System.out.println("================================");
 
             System.out.println("\n1. Nonton Film");
@@ -217,7 +217,8 @@ public class My_list {
             System.out.println("3. Tambah Film");
             System.out.println("4. Tambah Film sequel");
             System.out.println("5. Hapus Film");
-            System.out.println("6. Keluar");
+            System.out.println("6. Cari Film");
+            System.out.println("7. Keluar");
 
             System.out.print("\nPilih menu >> ");
 
@@ -249,7 +250,13 @@ public class My_list {
                     Tree.deleteVideo(title);
                     LoadingAnimation();
                     break;
-                case 6 : 
+                case 6 :
+                    System.out.print("Masukkan judul film yang ingin dicari: ");
+                    title = scanner.nextLine();
+                    Tree.searchAndDisplayVideo(title);
+                    pause();
+                    break;
+                case 7 : 
                     return;
             }
         }

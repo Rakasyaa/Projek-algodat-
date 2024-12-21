@@ -228,4 +228,40 @@ class VideoTree {
         return root.left == null ? root : findSmallestValue(root.left);
     }
 
+    public void searchAndDisplayVideo(String title) {
+        VideoNode node = searchVideo(title);
+        if (node == null) {
+            System.out.println("Film dengan judul \"" + title + "\" tidak ditemukan.");
+        } else {
+            System.out.println("\nFilm dengan judul " + title +" ditemukan, berikut informasi lengkapnya:");
+            System.out.println("\n====================================");
+            System.out.println("          Informasi Film           ");
+            System.out.println("====================================");
+            System.out.println("Judul         : " + node.title);
+            System.out.println("Sutradara     : " + node.director);
+            System.out.println("Genre         : " + node.type);
+            System.out.println("Tahun Rilis   : " + node.releaseYear);
+            System.out.println("Durasi        : " + node.durationMinutes + ":" + String.format("%02d", node.durationSeconds));
+            System.out.println("------------------------------------");
+            System.out.println("Film Terkait:");
+
+            if (node.left != null) {
+                System.out.println("\nSequel Kiri:");
+                System.out.println("- " + node.left.title + " (" + node.left.releaseYear + ")");
+                System.out.println("  Sutradara: " + node.left.director);
+            } else {
+                System.out.println("\nTidak ada sequel di kiri");
+            }
+            
+            if (node.right != null) {
+                System.out.println("\nSequel Kanan:");
+                System.out.println("- " + node.right.title + " (" + node.right.releaseYear + ")");
+                System.out.println("  Sutradara: " + node.right.director);
+            } else {
+                System.out.println("\nTidak ada sequel di kanan");
+            }
+            System.out.println("====================================");
+        }
+    }
+
 }
