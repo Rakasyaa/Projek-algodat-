@@ -89,6 +89,8 @@ class VideoTree {
         }
     }
 
+
+
     // Menonton film
     public void watchVideo(String title) {
         VideoNode node = searchVideo(title);
@@ -175,16 +177,18 @@ class VideoTree {
                 
                 // Menampilkan progress bar
                 System.out.print("\r" + progressBar); // \r untuk menimpa baris sebelumnya
+                
                 try {
-                    Thread.sleep(1); // Delay 1 detik
+                    Thread.sleep(1);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    System.out.println("\n Process Interrupted!");
+                    return;
                 }
                 
                 currentSeconds++;
             }
     
-            System.out.println("\n Video selesai diputar! ");
+            System.out.println("\n\nVideo selesai diputar! ");
         } else {
             System.out.println("Tidak ada video di dalam daftar putar!");
         }

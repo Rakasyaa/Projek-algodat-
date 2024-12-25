@@ -1,18 +1,18 @@
 package src;
 
+class Node {
+    SongNode song;
+    Node next;
+    
+
+    Node(SongNode song) {
+        this.song = song;
+        this.next = null;
+    }
+}
+
 public class PlayList {
     private Node top;
-
-    private static class Node {
-        SongNode song;
-        Node next;
-        
-
-        Node(SongNode song) {
-            this.song = song;
-            this.next = null;
-        }
-    }
 
     public void addTop(SongNode song) {
         Node newNode = new Node(song);
@@ -43,13 +43,11 @@ public class PlayList {
             System.out.println("             Now Playing         ");
             System.out.println(" |> " + top.song.title + " - " + top.song.author);
             System.out.println();
-        
-            System.out.println("0:00 |=>--------------------------------|");
-            
-                System.out.println("\n    ====================================");
-                System.out.println();
-                System.out.println();
-            }
+            System.out.println("0:00 |=>-----------------------|" + top.song.minutes +":"+ top.song.seconds);
+            System.out.println();
+            System.out.println("====================================");
+            System.out.println();
+        }
     }
     
 
@@ -67,7 +65,7 @@ public class PlayList {
         int Nomer_lagu = 1;
 
         while (current != null) {
-            System.out.println("  " + Nomer_lagu + " | " + current.song.author + " - " + current.song.title + " (" + current.song.releaseYear + ")");
+            System.out.println("  " + Nomer_lagu + " | " + current.song.title + " - " + current.song.author + " (" + current.song.releaseYear + ")");
             System.out.println("        " + current.song.minutes +":"+ current.song.seconds );
             Nomer_lagu++;
             current = current.next;

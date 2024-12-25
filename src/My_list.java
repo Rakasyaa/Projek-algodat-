@@ -3,14 +3,12 @@ package src;
 import java.util.Scanner;
 
 public class My_list {
-    private static final Scanner scanner = new Scanner(System.in);
+    private static  Scanner scanner = new Scanner(System.in);
 
-    private static final SongLinkedList songList = new SongLinkedList();
-    private static final PlayList Playlist = new PlayList();
+    private static SongLinkedList songList = new SongLinkedList();
+    private static PlayList Playlist = new PlayList();
 
     public static VideoTree Tree = new VideoTree();
-
-    // static boolean Add_Awal = true; // bisa di hapus cuma penambahan simpel
 
     private static void Add_Awal() {
         songList.addSong("Song A", "Author A", 2020, 3, 45);
@@ -24,11 +22,18 @@ public class My_list {
         Tree.addVideo("Pulp Fiction", "Quentin Tarantino", "Crime", 1994, 15, 0);
     }
 
+    private static void header(){
+        System.out.println("====================================");
+        System.out.println("               My-List              ");
+        System.out.println("====================================");
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int pilihan = 0; 
         Add_Awal();
-
+        int pilihan = 0; 
+        
         do {
             LoadingAnimation();
             clearScreen();
@@ -37,7 +42,7 @@ public class My_list {
             System.out.println("====================================");
             
             System.out.println("   1. List Song");
-            System.out.println("   2. List Film");
+            System.out.println("   2. List Movie");
             System.out.println("   3. Exit");
             
             System.out.print("\nInsert option >> ");
@@ -56,6 +61,7 @@ public class My_list {
                     break;
                 default :
                     System.out.println("Invalid choice. Try again");
+                    pause();
             }
 
         } while (pilihan != 3);
@@ -92,21 +98,25 @@ public class My_list {
                 case 2:Playlist.popTop(); break;
                 case 3: menu_list(); break;
                 case 4: 
+                    LoadingAnimation();
                     clearScreen();
                     Playlist.viewHistory();
                     pause();
                     break;
                 case 5: break;
 
-                default: System.out.println("Invalid choice. Try again.");
+                default: 
+                    System.out.println("Invalid choice. Try again.");
+                    pause();
             }
-        } while (choice != 7);
+        } while (choice != 5);
     };
 
     private static void menu_list (){
         int choice;
 
         do {
+            LoadingAnimation();
             clearScreen();
 
             songList.displaySongs();
@@ -130,19 +140,25 @@ public class My_list {
                 case 4: songList.sortByTime(); break;
                 case 5: Add_To_PlayList();;
 
-                default: System.out.println("Invalid choice. Try again.");
+                default: 
+                    System.out.println("Invalid choice. Try again.");
+                    pause();
             }
         } while (choice != 6);
     }
 
     private static void Add_To_PlayList (){
+        clearScreen();
+        LoadingAnimation();
+        header();
+        System.out.println();
         System.out.print("Enter the title of the song to add: ");
 
         String title = scanner.nextLine();
         SongNode song = songList.findSong(title);
         
         if (song != null) {
-            System.out.println("Add : " + song.title);
+            System.out.println("\nAdd : " + song.title + "Playlist");
             Playlist.enqueue(song);
         } else {
             System.out.println("Song not found.");
@@ -151,7 +167,11 @@ public class My_list {
     }
 
     private static void addSong() {
-        System.out.println();
+        clearScreen();
+        LoadingAnimation();
+        header();
+
+        System.out.println("Masukan Detail Musik yang anda ingin tambahakan : ");
         System.out.print("Enter title: ");
         String title = scanner.nextLine();
         System.out.print("Enter author: ");
@@ -168,6 +188,10 @@ public class My_list {
     }
 
     private static void removeSong() {
+        clearScreen();
+        LoadingAnimation();
+        header();
+
         System.out.println();
         System.out.print("Enter the title of the song to remove: ");
         String title = scanner.nextLine();
@@ -177,11 +201,12 @@ public class My_list {
 
     private static void playSong() {
         clearScreen();
+        header();
         System.out.print("Enter the title of the song to play: ");
 
         String title = scanner.nextLine();
         SongNode song = songList.findSong(title);
-        
+        System.out.println();
         if (song != null) {
             System.out.println("Playing: " + song.title);
             Playlist.addTop(song);
@@ -195,6 +220,7 @@ public class My_list {
     public static void menu_video() {
 
         while (true) {
+            LoadingAnimation();
             clearScreen();
             System.out.println("================================");
             System.out.println("              My-List           ");
@@ -213,44 +239,84 @@ public class My_list {
             int choice = scanner.nextInt();
             scanner.nextLine();
 
-            String title;
             switch (choice) {
                 case 1 :
-                    System.out.print("Enter the movie title: ");
-                    title = scanner.nextLine();
-                    Tree.watchVideo(title);
-                    pause();
-                    LoadingAnimation();
+                    PlayMovie();
                     break;
-                case 2 : 
-                    Tree.displayAllVideos(); 
-                    pause();
+                case 2 :
+                    ShowList();
                     break;
                 case 3 : 
                     tambah_film(); 
                     break;
                 case 4 : 
-                    hapus_Sequel(); 
+                    tambah_Sequel(); 
                     break;
-                    case 5 : 
-                    System.out.print("Enter the title of the movie to remove: ");
-                    title = scanner.nextLine();
-                    Tree.deleteVideo(title);
-                    LoadingAnimation();
+                case 5 : 
+                    RemoveMovie();
                     break;
                 case 6 :
-                    System.out.print("Enter the title of the movie to search: ");
-                    title = scanner.nextLine();
-                    Tree.searchAndDisplayVideo(title);
-                    pause();
+                    SearchMovie();
                     break;
                 case 7 : 
                     return;
+                default :
+                    System.out.println("Invalid choice. Try again");
+                    pause();
             }
         }
     }
 
+    public static void PlayMovie() {
+        LoadingAnimation();
+        clearScreen();
+        header();
+        System.out.print("Enter the movie title: ");
+        String title = scanner.nextLine();
+        clearScreen();
+        Tree.watchVideo(title);
+        pause();
+    }
+
+    public static void ShowList() {
+        LoadingAnimation();
+        clearScreen();
+        header();
+        System.out.println("List movie in tree : ");
+        Tree.displayAllVideos(); 
+        pause();
+    }
+
+    public static void RemoveMovie() {
+        LoadingAnimation();
+        clearScreen();
+        header();
+    
+        System.out.print("Enter the title of the movie to remove: ");
+        String title = scanner.nextLine();
+        Tree.deleteVideo(title);
+        System.out.print("\nmovie have been remove !!!\n");
+        pause();
+    }
+
+    public static void SearchMovie() {
+        LoadingAnimation();
+        clearScreen();
+        header();
+        System.out.print("Enter the title of the movie to search: ");
+        String title = scanner.nextLine();
+        clearScreen();
+        Tree.searchAndDisplayVideo(title);
+        pause();
+    }
+
     public static void tambah_film() {
+        LoadingAnimation();
+        clearScreen();
+        header();
+
+        System.out.println("Masukan Detail Film yang anda ingin tambahakan : ");
+
         System.out.print("Enter the title: ");
         String title = scanner.nextLine();
         System.out.print("Enter the director: ");
@@ -265,10 +331,17 @@ public class My_list {
         int seconds = scanner.nextInt();
         scanner.nextLine();
         Tree.addVideo(title, director, type, year, minutes, seconds);
-        LoadingAnimation();
+        System.out.print("\nmovie have been added !!!\n");
+        pause();
     }
 
-    public static void hapus_Sequel() {
+    public static void tambah_Sequel() {
+        LoadingAnimation();
+        clearScreen();
+        header();
+
+        System.out.println("Masukan Detail Film yang anda ingin tambahakan : ");
+
         System.out.print("Enter the title of the movie to add sequel : ");
         String titleafter = scanner.nextLine();
         System.out.print("Enter the title: ");
@@ -285,7 +358,8 @@ public class My_list {
         int seconds = scanner.nextInt();
         scanner.nextLine();
         Tree.addVideoAfter(titleafter, title, director, type, year, minutes, seconds);
-        LoadingAnimation();
+        System.out.print("\nmovie have been added !!!\n");
+        pause();
     }
 
     public static void LoadingAnimation() {
@@ -318,6 +392,7 @@ public class My_list {
     }
 
     private static void pause() {
+        System.out.print("\nTekan ENTER untuk melanjutkan . . .");
         scanner.nextLine();
     }
 }

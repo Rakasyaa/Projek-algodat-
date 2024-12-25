@@ -60,7 +60,6 @@ public class SongLinkedList {
     }
 
     public SongNode findSong(String title) {
-        System.out.println(title);
         SongNode current = head;
         while (current != null) {
             if (current.title.equalsIgnoreCase(title)){
@@ -80,24 +79,7 @@ public class SongLinkedList {
             SongNode current = head;
             while (current != null && current.next != null) {
                 if (current.title.compareToIgnoreCase(current.next.title) > 0) {
-                    String tempTitle = current.title;
-                    String tempAuthor = current.author;
-                    int tempReleaseYear = current.releaseYear;
-                    int tempMinutes = current.minutes;
-                    int tempSeconds = current.seconds;
-
-                    current.title = current.next.title;
-                    current.author = current.next.author;
-                    current.releaseYear = current.next.releaseYear;
-                    current.minutes = current.next.minutes;
-                    current.seconds = current.next.seconds;
-
-                    current.next.title = tempTitle;
-                    current.next.author = tempAuthor;
-                    current.next.releaseYear = tempReleaseYear;
-                    current.next.minutes = tempMinutes;
-                    current.next.seconds = tempSeconds;
-
+                    swap(current);
                     swapped = true;
                 }
                 current = current.next;
@@ -117,24 +99,7 @@ public class SongLinkedList {
                 int nextTimeInSeconds = current.next.minutes * 60 + current.next.seconds;
 
                 if (currentTimeInSeconds > nextTimeInSeconds) {
-                    String tempTitle = current.title;
-                    String tempAuthor = current.author;
-                    int tempReleaseYear = current.releaseYear;
-                    int tempMinutes = current.minutes;
-                    int tempSeconds = current.seconds;
-
-                    current.title = current.next.title;
-                    current.author = current.next.author;
-                    current.releaseYear = current.next.releaseYear;
-                    current.minutes = current.next.minutes;
-                    current.seconds = current.next.seconds;
-
-                    current.next.title = tempTitle;
-                    current.next.author = tempAuthor;
-                    current.next.releaseYear = tempReleaseYear;
-                    current.next.minutes = tempMinutes;
-                    current.next.seconds = tempSeconds;
-
+                    swap(current);
                     swapped = true;
                 }
                 current = current.next;
@@ -142,4 +107,23 @@ public class SongLinkedList {
         } while (swapped);
     }
 
+    public void swap(SongNode current){
+        String tempTitle = current.title;
+        String tempAuthor = current.author;
+        int tempReleaseYear = current.releaseYear;
+        int tempMinutes = current.minutes;
+        int tempSeconds = current.seconds;
+
+        current.title = current.next.title;
+        current.author = current.next.author;
+        current.releaseYear = current.next.releaseYear;
+        current.minutes = current.next.minutes;
+        current.seconds = current.next.seconds;
+
+        current.next.title = tempTitle;
+        current.next.author = tempAuthor;
+        current.next.releaseYear = tempReleaseYear;
+        current.next.minutes = tempMinutes;
+        current.next.seconds = tempSeconds;
+    }
 }
